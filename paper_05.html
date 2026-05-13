@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Paper 05 — GAIA-X Compliant Federated Data Spaces for Cross-Organisational Supply Chain Visibility · CONFENIS 2027</title>
+<meta name="description" content="GAIA-X Compliant Federated Data Spaces for Cross-Organisational Supply Chain Visibility — Sophie Bauer, Markus Lindner, Elena Petrova — CONFENIS 2027 proceedings, Springer LNBIP 528.">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="topbar"><div class="wrap"><span>IFIP WG 8.9 · International Federation for Information Processing</span><span>Vienna, Austria · 12–13 September 2027</span></div></div>
+<header class="site-header"><div class="wrap"><div class="brand"><div class="brand-mark">C27</div><div class="brand-text"><h1>CONFENIS 2027</h1><p>13th International Conference on Enterprise Information Systems</p></div></div><div class="small" style="color:#ecf0f1;text-align:right;"><strong style="color:#fff;">TU Wien, Vienna</strong><br>Hosted by Vienna University of Technology</div></div></header>
+<nav class="main-nav"><div class="wrap" style="padding:0;"><ul>
+  <li><a href="index.html">Home</a></li>
+  <li><a href="about.html">About</a></li>
+  <li><a href="cfp.html">Call for Papers</a></li>
+  <li><a href="committee.html">Committee</a></li>
+  <li><a href="schedule.html">Programme</a></li>
+  <li><a href="venue.html">Venue</a></li>
+  <li><a href="proceedings.html" class="active">Proceedings</a></li>
+</ul></div></nav>
+
+<section class="paper-header">
+  <div class="wrap">
+    <p class="kicker">CONFENIS 2027 · Paper 05 · Data Spaces and Inter-Organisational Information Systems</p>
+    <h1>GAIA-X Compliant Federated Data Spaces for Cross-Organisational Supply Chain Visibility</h1>
+    <p class="authors">Sophie Bauer, Markus Lindner, Elena Petrova</p>
+    <p class="affil">University of Vienna · TU Munich · Sofia University 'St. Kliment Ohridski'</p>
+  </div>
+</section>
+
+<div class="paper-body">
+  <div class="paper-meta">
+    <div><strong>Paper number</strong>CONFENIS 2027 / 05</div>
+    <div><strong>Track</strong>Data Spaces and Inter-Organisational Information Systems</div>
+    <div><strong>Pages</strong>61–75</div>
+    <div><strong>Proceedings</strong>Springer LNBIP vol. 528 (2027)</div>
+    <div><strong>Corresponding</strong><a href="mailto:sophie.bauer@univie.ac.at">sophie.bauer@univie.ac.at</a></div>
+    <div><strong>DOI</strong>10.1007/978-3-031-XXXXX-X_5</div>
+  </div>
+
+  <div class="abstract">
+    <strong>Abstract</strong>
+    <p>European supply chains face a structural information-asymmetry problem: visibility across organisational boundaries is critical for resilience, sustainability, and compliance, yet the data-sharing infrastructure remains either bilateral or vendor-locked. GAIA-X and the IDS Reference Architecture offer a sovereign federated alternative but their concrete instantiation in supply-chain contexts is still emerging. We design and prototype a GAIA-X compliant federated data space for cross-organisational visibility in a three-tier European automotive supply chain (OEM, Tier-1, Tier-2). The prototype implements verifiable-credentials based access control and policy-enforced data usage tracking. Evaluation against a six-month operational pilot shows feasible end-to-end performance and surfaces the governance — not technical — bottlenecks of sovereign data sharing.</p>
+  </div>
+
+  <p class="keywords"><strong>Keywords:</strong> GAIA-X; Federated Data Spaces; Supply Chain Visibility; IDS; Catena-X; Data Sovereignty</p>
+
+  <h2>1. Introduction</h2>
+  <p>The disruption of European supply chains during 2020–2023 — pandemic, semiconductor shortage, Russia's invasion of Ukraine, Red Sea shipping interruption — has exposed a long-known weakness: most enterprises have visibility only to their direct counterparties (n+1 visibility), and so cannot anticipate disruption from deeper tiers. Federated data spaces, formalised in the GAIA-X Architecture Document (GAIA-X AISBL, 2023) and the IDS Reference Architecture Model 4 (IDSA, 2022), promise sovereign cross-tier visibility without the centralisation of data in a vendor platform.</p>
+
+  <h2>2. Method</h2>
+  <p>We design FED-SCV (Federated Supply Chain Visibility), a reference architecture for GAIA-X compliant cross-tier visibility, and instantiate it as a prototype across three European partners: a German automotive OEM (anonymised as O), an Austrian Tier-1 (T1), and a Bulgarian Tier-2 (T2). The prototype uses Eclipse EDC 0.4 as the connector layer, the Catena-X Item Relationship Service for product genealogy, and a self-issued verifiable credential framework based on W3C VC 2.0. Evaluation covered a six-month operational pilot (April–September 2026) of three concrete use cases: forward inventory visibility, carbon-footprint pass-through, and quality incident propagation.</p>
+
+  <h2>3. Results</h2>
+  <p>Technically, FED-SCV achieved end-to-end latencies of 1.8 seconds median (95th percentile 4.6 s) for inventory queries propagating O→T1→T2. Verifiable credential verification added 240 ms median. Throughput peaked at 180 queries/second, well above operational requirements. Governance-wise, the substantive bottleneck was not technical: the three partners required 14 weeks to agree on usage-policy semantics — specifically, what 'authorised internal use' meant for carbon-footprint data that, if recombined with other sources, could reveal Tier-2 cost structure. The Carbon-footprint use case consumed 60% of the governance effort despite being the smallest by data volume.</p>
+
+  <h2>4. Discussion</h2>
+  <p>Our pilot supports the operational feasibility of GAIA-X compliant supply-chain data spaces, but corroborates the emerging practitioner consensus that the bottleneck is data-sharing governance, not connector technology. The 14-week negotiation period for usage-policy semantics across three partners suggests that ten-partner Catena-X instances will require fundamentally new collective-governance tooling — perhaps drawing on commons-management theory (Ostrom, 1990) rather than on bilateral contracting.</p>
+
+  <h2>5. Conclusion</h2>
+  <p>GAIA-X compliant federated visibility is technically mature; the open research and practice agenda lies in scalable, multi-party usage governance. FED-SCV offers a reference instantiation and a baseline empirical study for the field.</p>
+
+  <h2>References</h2>
+  <ol class="references">
+    <li>GAIA-X AISBL: Architecture Document — Release 24.04. GAIA-X European Association for Data and Cloud (2023).</li>
+<li>IDSA: IDS Reference Architecture Model, Version 4. International Data Spaces Association (2022).</li>
+<li>Otto, B., ten Hompel, M., Wrobel, S.: Designing Data Spaces. Springer (2022).</li>
+<li>Ostrom, E.: Governing the Commons: The Evolution of Institutions for Collective Action. Cambridge University Press (1990).</li>
+<li>Petrova, E., Bauer, S.: Federated identity in cross-border B2B data spaces. Data &amp; Knowledge Engineering 145, 102119 (2024).</li>
+<li>W3C: Verifiable Credentials Data Model 2.0. W3C Candidate Recommendation (2024).</li>
+  </ol>
+
+  <p class="muted small" style="margin-top:30px;">Citation: Sophie Bauer, Markus Lindner, Elena Petrova. "GAIA-X Compliant Federated Data Spaces for Cross-Organisational Supply Chain Visibility." In: Tjoa, A.M., Mendling, J., Wimmer, M. (eds.) <em>Research and Practical Issues of Enterprise Information Systems</em>. CONFENIS 2027. LNBIP 528, pp. 61–75. Springer, Cham (2027).</p>
+  <p class="muted small">© Springer Nature Switzerland AG 2027. Reproduction with permission.</p>
+
+  <p style="margin-top:30px;"><a href="proceedings.html">← Back to proceedings</a></p>
+</div>
+
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="grid grid-4">
+      <div><h4>CONFENIS 2027</h4><p>13th IFIP WG 8.9 International Conference on Research and Practical Issues of Enterprise Information Systems. Vienna, 12–13 September 2027.</p></div>
+      <div><h4>Quick links</h4><ul><li><a href="about.html">About</a></li><li><a href="cfp.html">Call for Papers</a></li><li><a href="committee.html">Committee</a></li><li><a href="schedule.html">Programme</a></li><li><a href="venue.html">Venue &amp; Travel</a></li><li><a href="proceedings.html">Proceedings</a></li></ul></div>
+      <div><h4>Organising secretariat</h4><p>Institute of Information Systems Engineering<br>TU Wien — Vienna University of Technology<br>Favoritenstraße 9–11/194<br>1040 Vienna, Austria</p><p><a href="mailto:confenis2027@tuwien.ac.at">confenis2027@tuwien.ac.at</a></p></div>
+      <div><h4>Sponsors &amp; partners</h4><ul><li>IFIP WG 8.9</li><li>Austrian Computer Society (ÖCG)</li><li>Springer LNBIP</li><li>Austrian Science Fund (FWF)</li><li>City of Vienna — MA 23</li></ul></div>
+    </div>
+    <div class="copyright">© 2026–2027 CONFENIS Organising Committee · Hosted by TU Wien · Proceedings © Springer Nature Switzerland AG</div>
+  </div>
+</footer>
+</body></html>
+

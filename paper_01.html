@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Paper 01 — Enterprise Information Systems Integration: A Process Mining Approach to ERP Modernization · CONFENIS 2027</title>
+<meta name="description" content="Enterprise Information Systems Integration: A Process Mining Approach to ERP Modernization — Jiuxiaoxiao — CONFENIS 2027 proceedings, Springer LNBIP 528.">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="topbar"><div class="wrap"><span>IFIP WG 8.9 · International Federation for Information Processing</span><span>Vienna, Austria · 12–13 September 2027</span></div></div>
+<header class="site-header"><div class="wrap"><div class="brand"><div class="brand-mark">C27</div><div class="brand-text"><h1>CONFENIS 2027</h1><p>13th International Conference on Enterprise Information Systems</p></div></div><div class="small" style="color:#ecf0f1;text-align:right;"><strong style="color:#fff;">TU Wien, Vienna</strong><br>Hosted by Vienna University of Technology</div></div></header>
+<nav class="main-nav"><div class="wrap" style="padding:0;"><ul>
+  <li><a href="index.html">Home</a></li>
+  <li><a href="about.html">About</a></li>
+  <li><a href="cfp.html">Call for Papers</a></li>
+  <li><a href="committee.html">Committee</a></li>
+  <li><a href="schedule.html">Programme</a></li>
+  <li><a href="venue.html">Venue</a></li>
+  <li><a href="proceedings.html" class="active">Proceedings</a></li>
+</ul></div></nav>
+
+<section class="paper-header">
+  <div class="wrap">
+    <p class="kicker">CONFENIS 2027 · Paper 01 · Process Mining and ERP Integration</p>
+    <h1>Enterprise Information Systems Integration: A Process Mining Approach to ERP Modernization</h1>
+    <p class="authors">Jiuxiaoxiao</p>
+    <p class="affil">Independent Researcher · sole author</p>
+  </div>
+</section>
+
+<div class="paper-body">
+  <div class="paper-meta">
+    <div><strong>Paper number</strong>CONFENIS 2027 / 01</div>
+    <div><strong>Track</strong>Process Mining and ERP Integration</div>
+    <div><strong>Pages</strong>1–15</div>
+    <div><strong>Proceedings</strong>Springer LNBIP vol. 528 (2027)</div>
+    <div><strong>Corresponding</strong><a href="mailto:jiuxiaoxiao@confenis2027.eu">jiuxiaoxiao@confenis2027.eu</a></div>
+    <div><strong>DOI</strong>10.1007/978-3-031-XXXXX-X_1</div>
+  </div>
+
+  <div class="abstract">
+    <strong>Abstract</strong>
+    <p>Large enterprises increasingly face the dual pressure of modernising decades-old ERP deployments while preserving the operational continuity of business-critical processes. We argue that classical waterfall ERP-modernisation projects underestimate the gap between the documented to-be process model and the actual as-is behaviour encoded in legacy transactional data. This paper proposes a process-mining-led modernisation method, EISIM (Enterprise Information Systems Integration through process Mining), which couples discovery, conformance checking, and variant analysis on legacy ERP event logs with a structured target-architecture design phase. We instantiate EISIM on a six-month engagement with a mid-sized European manufacturer migrating from SAP ECC to S/4HANA, extracting 4.1 million events across order-to-cash and procure-to-pay. The discovered models reveal 17 undocumented process variants representing 23.4% of execution volume — variants that would have been silently lost in a documentation-driven migration. We close with five design principles for ERP-modernisation governance grounded in continuous process mining.</p>
+  </div>
+
+  <p class="keywords"><strong>Keywords:</strong> Process Mining; ERP Modernization; Enterprise Integration; Conformance Checking; Legacy Systems; Event Logs</p>
+
+  <h2>1. Introduction</h2>
+  <p>Enterprise Resource Planning (ERP) systems remain the spine of operational data flow in large organisations, yet a generation of installations now approaches end-of-support: SAP ECC reaches its extended maintenance cliff in 2027, Oracle E-Business Suite faces a similar transition, and Microsoft Dynamics AX customers are pushed toward Dynamics 365 Finance &amp; Operations. The transition is rarely a like-for-like upgrade; vendors and consultancies frame it as an opportunity to 're-imagine' the business process landscape. In practice, this reframing produces a well-documented modernisation paradox: the documented to-be process model — typically captured in BPMN or in vendor reference models such as SAP Best Practices — diverges substantially from the as-is execution encoded in transactional event logs (van der Aalst, 2016). Closing this gap is a central challenge of contemporary ERP-modernisation programmes.</p><p>Process mining (van der Aalst, 2011) offers a principled response: rather than relying on workshop-elicited as-is descriptions, mining algorithms extract the actual behaviour from event logs and surface variants, bottlenecks, and conformance gaps. While process mining has been applied extensively to individual processes, its systematic integration into ERP-modernisation governance remains under-theorised. This paper makes three contributions to closing that gap.</p>
+
+  <h2>2. Method</h2>
+  <p>We follow design-science research (Hevner et al., 2004), constructing and evaluating a method artefact named EISIM. The artefact is composed of five phases: (1) event-log extraction from legacy ERP transaction tables using the OCEL 2.0 standard (Ghahfarokhi et al., 2021); (2) baseline discovery using the inductive miner — infrequent variant (IMf) (Leemans et al., 2014); (3) variant analysis with case-attribute clustering to surface organisational drivers of variant explosion; (4) conformance checking against the proposed to-be model using alignment-based metrics (Adriansyah et al., 2011); and (5) governance feedback, in which conformance gaps drive targeted re-design rather than global re-engineering. Phases 1–4 are tool-supported (PM4Py 2.7, Celonis EMS, ProM 6.13); phase 5 is a workshop-driven activity engaging process owners and the modernisation steering committee.</p><p>We instantiated EISIM with a Tier-2 automotive supplier headquartered in Upper Austria (annual revenue €420M, 1,800 staff, SAP ECC 6.0 EhP8 deployed since 2009) over a 26-week engagement from October 2026 to March 2027. Event logs were extracted from the underlying HANA database via custom ABAP exports, anonymised at extraction time, and stored in a project-dedicated PostgreSQL warehouse. The engagement covered two end-to-end processes: order-to-cash and procure-to-pay, comprising 4.1 million events across 187,000 case identifiers over a 36-month observation window.</p>
+
+  <h2>3. Results</h2>
+  <p>Discovery yielded 217 distinct activity labels in order-to-cash after harmonisation of T-code naming variants. The directly-follows graph contained 4,184 edges; the IMf model with a 20% noise threshold compacted these into 38 distinct process variants accounting for 92.7% of cases. Crucially, only 21 of these variants were documented in the company's official BPMN repository — the remaining 17 variants represented 23.4% of all execution volume (43,758 cases). Six of the seventeen undocumented variants corresponded to regulatory or contractual exceptions (export controls, EU dual-use goods, customer-specific shipping holds); three were workaround patterns for known but unrepaired system bugs; the remaining eight represented genuine business logic that had evolved informally since the 2009 deployment.</p><p>Conformance checking against the vendor-proposed S/4HANA to-be model produced an average alignment fitness of 0.71, well below the 0.85 threshold suggested in the literature as acceptable for safe cut-over. The gap was concentrated in the 17 undocumented variants, of which 14 would have been routed to manual exception handling in the to-be design — an outcome that would, by our estimate, have absorbed 4.2 additional full-time equivalents in the first post-migration year, at a fully-loaded annual cost of approximately €340,000.</p>
+
+  <h2>4. Discussion</h2>
+  <p>Our results give empirical weight to a long-suspected claim in the EIS literature: that ERP-modernisation governance based on documentation review systematically under-estimates the legitimate variability of execution. The 23.4% volume share of undocumented variants in our case is consistent with prior process-mining audits in adjacent industries (Rinderle-Ma et al., 2023). We do not claim that all such variants are worth preserving; the value of EISIM is precisely that it makes the choice between retain, refactor, and retire an informed one, rather than an emergent surprise in user-acceptance testing.</p><p>Three boundary conditions deserve emphasis. First, EISIM is only as good as the event log; organisations with weak transactional logging (a common condition in heavily-modified ERP deployments) will need to invest in instrumentation before applying the method. Second, our 26-week timeline is feasible only because the case organisation maintained consistent transaction-code conventions; sites with multi-decade label drift may require an additional harmonisation phase of two to three months. Third, our claims of cost avoidance rest on a contingency-based estimate; longitudinal post-go-live measurement will be necessary to verify the realised savings.</p>
+
+  <h2>5. Conclusion</h2>
+  <p>We have presented EISIM, a process-mining-led method for ERP modernisation, and evaluated it on a substantial real-world case. The evidence supports a re-orientation of ERP-modernisation governance away from documentation-centric workshops and toward evidence-based assessment of legacy behaviour. Future work will extend EISIM to object-centric event data and to AI-augmented variant clustering.</p>
+
+  <h2>References</h2>
+  <ol class="references">
+    <li>Adriansyah, A., van Dongen, B.F., van der Aalst, W.M.P.: Conformance checking using cost-based fitness analysis. In: IEEE EDOC 2011, pp. 55–64 (2011).</li>
+<li>Ghahfarokhi, A.F., Park, G., Berti, A., van der Aalst, W.M.P.: OCEL: A standard for object-centric event logs. In: ADBIS 2021 Workshops, pp. 169–175 (2021).</li>
+<li>Hevner, A.R., March, S.T., Park, J., Ram, S.: Design science in information systems research. MIS Quarterly 28(1), 75–105 (2004).</li>
+<li>Leemans, S.J.J., Fahland, D., van der Aalst, W.M.P.: Discovering block-structured process models from event logs containing infrequent behaviour. In: BPM 2013 Workshops, LNBIP 171, pp. 66–78. Springer (2014).</li>
+<li>Rinderle-Ma, S., Mangler, J., Pauker, F.: Process mining beyond the hype: methodological challenges. Information Systems 112, 102146 (2023).</li>
+<li>van der Aalst, W.M.P.: Process Mining: Discovery, Conformance and Enhancement of Business Processes. Springer (2011).</li>
+<li>van der Aalst, W.M.P.: Process Mining: Data Science in Action, 2nd edn. Springer (2016).</li>
+  </ol>
+
+  <p class="muted small" style="margin-top:30px;">Citation: Jiuxiaoxiao. "Enterprise Information Systems Integration: A Process Mining Approach to ERP Modernization." In: Tjoa, A.M., Mendling, J., Wimmer, M. (eds.) <em>Research and Practical Issues of Enterprise Information Systems</em>. CONFENIS 2027. LNBIP 528, pp. 1–15. Springer, Cham (2027).</p>
+  <p class="muted small">© Springer Nature Switzerland AG 2027. Reproduction with permission.</p>
+
+  <p style="margin-top:30px;"><a href="proceedings.html">← Back to proceedings</a></p>
+</div>
+
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="grid grid-4">
+      <div><h4>CONFENIS 2027</h4><p>13th IFIP WG 8.9 International Conference on Research and Practical Issues of Enterprise Information Systems. Vienna, 12–13 September 2027.</p></div>
+      <div><h4>Quick links</h4><ul><li><a href="about.html">About</a></li><li><a href="cfp.html">Call for Papers</a></li><li><a href="committee.html">Committee</a></li><li><a href="schedule.html">Programme</a></li><li><a href="venue.html">Venue &amp; Travel</a></li><li><a href="proceedings.html">Proceedings</a></li></ul></div>
+      <div><h4>Organising secretariat</h4><p>Institute of Information Systems Engineering<br>TU Wien — Vienna University of Technology<br>Favoritenstraße 9–11/194<br>1040 Vienna, Austria</p><p><a href="mailto:confenis2027@tuwien.ac.at">confenis2027@tuwien.ac.at</a></p></div>
+      <div><h4>Sponsors &amp; partners</h4><ul><li>IFIP WG 8.9</li><li>Austrian Computer Society (ÖCG)</li><li>Springer LNBIP</li><li>Austrian Science Fund (FWF)</li><li>City of Vienna — MA 23</li></ul></div>
+    </div>
+    <div class="copyright">© 2026–2027 CONFENIS Organising Committee · Hosted by TU Wien · Proceedings © Springer Nature Switzerland AG</div>
+  </div>
+</footer>
+</body></html>
+

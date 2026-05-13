@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Paper 04 — Embedding the EU Corporate Sustainability Reporting Directive in ERP Data Models · CONFENIS 2027</title>
+<meta name="description" content="Embedding the EU Corporate Sustainability Reporting Directive in ERP Data Models — Petr Novák, Eliška Dvořáková, Tomáš Černý — CONFENIS 2027 proceedings, Springer LNBIP 528.">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="topbar"><div class="wrap"><span>IFIP WG 8.9 · International Federation for Information Processing</span><span>Vienna, Austria · 12–13 September 2027</span></div></div>
+<header class="site-header"><div class="wrap"><div class="brand"><div class="brand-mark">C27</div><div class="brand-text"><h1>CONFENIS 2027</h1><p>13th International Conference on Enterprise Information Systems</p></div></div><div class="small" style="color:#ecf0f1;text-align:right;"><strong style="color:#fff;">TU Wien, Vienna</strong><br>Hosted by Vienna University of Technology</div></div></header>
+<nav class="main-nav"><div class="wrap" style="padding:0;"><ul>
+  <li><a href="index.html">Home</a></li>
+  <li><a href="about.html">About</a></li>
+  <li><a href="cfp.html">Call for Papers</a></li>
+  <li><a href="committee.html">Committee</a></li>
+  <li><a href="schedule.html">Programme</a></li>
+  <li><a href="venue.html">Venue</a></li>
+  <li><a href="proceedings.html" class="active">Proceedings</a></li>
+</ul></div></nav>
+
+<section class="paper-header">
+  <div class="wrap">
+    <p class="kicker">CONFENIS 2027 · Paper 04 · Sustainability and ESG-aware EIS</p>
+    <h1>Embedding the EU Corporate Sustainability Reporting Directive in ERP Data Models</h1>
+    <p class="authors">Petr Novák, Eliška Dvořáková, Tomáš Černý</p>
+    <p class="affil">Charles University Prague · Faculty of Mathematics and Physics · 118 00 Prague, Czech Republic</p>
+  </div>
+</section>
+
+<div class="paper-body">
+  <div class="paper-meta">
+    <div><strong>Paper number</strong>CONFENIS 2027 / 04</div>
+    <div><strong>Track</strong>Sustainability and ESG-aware EIS</div>
+    <div><strong>Pages</strong>46–60</div>
+    <div><strong>Proceedings</strong>Springer LNBIP vol. 528 (2027)</div>
+    <div><strong>Corresponding</strong><a href="mailto:petr.novak@mff.cuni.cz">petr.novak@mff.cuni.cz</a></div>
+    <div><strong>DOI</strong>10.1007/978-3-031-XXXXX-X_4</div>
+  </div>
+
+  <div class="abstract">
+    <strong>Abstract</strong>
+    <p>The EU Corporate Sustainability Reporting Directive (CSRD), in force since January 2024 and reaching first-wave reporting in 2025, requires approximately 50,000 European companies to disclose against the European Sustainability Reporting Standards (ESRS). Most affected organisations rely on spreadsheet-based collection of ESG data; this approach is unsustainable at the granularity and audit-readiness required by ESRS. We propose an extension to the standard ERP data model — the ESRS-Aware Master Data Layer (EAMDL) — that natively represents the double-materiality concepts of ESRS. We evaluate EAMDL through a prototype implementation on top of SAP S/4HANA and a controlled comparison against the spreadsheet baseline at a Czech industrial holding company, showing a 73% reduction in CSRD report-preparation effort and a measurable improvement in audit-trail completeness.</p>
+  </div>
+
+  <p class="keywords"><strong>Keywords:</strong> CSRD; ESG; Sustainability Reporting; ERP Data Models; ESRS; European Sustainability Reporting Standards</p>
+
+  <h2>1. Introduction</h2>
+  <p>The CSRD (Directive (EU) 2022/2464) replaces the 2014 Non-Financial Reporting Directive and substantially expands both the scope of reporting entities and the granularity of required disclosures (European Commission, 2022). Mandatory disclosure is structured against the European Sustainability Reporting Standards (ESRS), adopted by the European Financial Reporting Advisory Group (EFRAG) in 2023. ESRS imposes a double-materiality principle: organisations must report both how sustainability matters affect them (financial materiality) and how their activities affect society and environment (impact materiality). Operationalising this in enterprise data systems is not trivial.</p>
+
+  <h2>2. Method</h2>
+  <p>We follow a design-science approach, constructing EAMDL as a data-model extension comprising four core entities: ESRS Topic, Disclosure Requirement, Data Point, and Materiality Assessment. These integrate with standard ERP master-data entities — Material, Plant, Vendor, GL Account — via a structured mapping layer. The prototype extends SAP S/4HANA 2023 using custom CDS views and ABAP-based reporting modules. Evaluation followed a within-subject controlled comparison at a Czech industrial holding (€780M revenue, four operating segments, 4,200 staff) preparing its first-wave CSRD report for fiscal year 2026. The same four-person sustainability team produced the fiscal-year 2025 baseline report using spreadsheets and the fiscal-year 2026 report using EAMDL.</p>
+
+  <h2>3. Results</h2>
+  <p>Aggregate report-preparation effort dropped from 1,184 person-hours (baseline) to 316 person-hours (EAMDL), a 73% reduction. The largest savings were in data collection (89% reduction) and audit-trail preparation (81%); savings in narrative drafting were modest (22%). Auditor-noted material weaknesses fell from 14 to 3 across the year. The remaining three weaknesses concerned Scope 3 emissions categories where upstream supplier data is not yet automated.</p>
+
+  <h2>4. Discussion</h2>
+  <p>EAMDL demonstrates that ESRS compliance can be operationally embedded into the ERP rather than handled as an after-the-fact reporting layer. The 73% effort reduction is consistent with industry analyst projections (Verdantix, 2024) and our results lend controlled-empirical support to those projections. Limitations include the dependence on master-data quality in the upstream ERP — sites with unreliable plant and material master data will see smaller gains — and the open question of how EAMDL extends to value-chain (Scope 3) emissions where the data crosses organisational boundaries.</p>
+
+  <h2>5. Conclusion</h2>
+  <p>Embedding ESRS in the ERP master-data layer is feasible, operationally beneficial, and audit-positive. We release the EAMDL specification as an open artefact (CC-BY) to accelerate adoption across the 50,000 in-scope European reporters.</p>
+
+  <h2>References</h2>
+  <ol class="references">
+    <li>EFRAG: European Sustainability Reporting Standards — Set 1. EFRAG Sustainability Reporting Board (2023).</li>
+<li>European Commission: Directive (EU) 2022/2464 on corporate sustainability reporting. Official Journal of the European Union L 322 (2022).</li>
+<li>Hevner, A.R., March, S.T., Park, J., Ram, S.: Design science in information systems research. MIS Quarterly 28(1), 75–105 (2004).</li>
+<li>Novák, P., Dvořáková, E.: Sustainability reporting in Central European industrial holdings. Politická Ekonomie 72(3), 312–340 (2024).</li>
+<li>Verdantix: ESG and sustainability software market outlook 2024–2030. Verdantix Research Report (2024).</li>
+  </ol>
+
+  <p class="muted small" style="margin-top:30px;">Citation: Petr Novák, Eliška Dvořáková, Tomáš Černý. "Embedding the EU Corporate Sustainability Reporting Directive in ERP Data Models." In: Tjoa, A.M., Mendling, J., Wimmer, M. (eds.) <em>Research and Practical Issues of Enterprise Information Systems</em>. CONFENIS 2027. LNBIP 528, pp. 46–60. Springer, Cham (2027).</p>
+  <p class="muted small">© Springer Nature Switzerland AG 2027. Reproduction with permission.</p>
+
+  <p style="margin-top:30px;"><a href="proceedings.html">← Back to proceedings</a></p>
+</div>
+
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="grid grid-4">
+      <div><h4>CONFENIS 2027</h4><p>13th IFIP WG 8.9 International Conference on Research and Practical Issues of Enterprise Information Systems. Vienna, 12–13 September 2027.</p></div>
+      <div><h4>Quick links</h4><ul><li><a href="about.html">About</a></li><li><a href="cfp.html">Call for Papers</a></li><li><a href="committee.html">Committee</a></li><li><a href="schedule.html">Programme</a></li><li><a href="venue.html">Venue &amp; Travel</a></li><li><a href="proceedings.html">Proceedings</a></li></ul></div>
+      <div><h4>Organising secretariat</h4><p>Institute of Information Systems Engineering<br>TU Wien — Vienna University of Technology<br>Favoritenstraße 9–11/194<br>1040 Vienna, Austria</p><p><a href="mailto:confenis2027@tuwien.ac.at">confenis2027@tuwien.ac.at</a></p></div>
+      <div><h4>Sponsors &amp; partners</h4><ul><li>IFIP WG 8.9</li><li>Austrian Computer Society (ÖCG)</li><li>Springer LNBIP</li><li>Austrian Science Fund (FWF)</li><li>City of Vienna — MA 23</li></ul></div>
+    </div>
+    <div class="copyright">© 2026–2027 CONFENIS Organising Committee · Hosted by TU Wien · Proceedings © Springer Nature Switzerland AG</div>
+  </div>
+</footer>
+</body></html>
+

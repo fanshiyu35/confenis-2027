@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Paper 03 — Conformance Checking under Concept Drift: A Stream-Based Approach for Long-Running Business Processes · CONFENIS 2027</title>
+<meta name="description" content="Conformance Checking under Concept Drift: A Stream-Based Approach for Long-Running Business Processes — Johannes Köhler, Anna Müller — CONFENIS 2027 proceedings, Springer LNBIP 528.">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="topbar"><div class="wrap"><span>IFIP WG 8.9 · International Federation for Information Processing</span><span>Vienna, Austria · 12–13 September 2027</span></div></div>
+<header class="site-header"><div class="wrap"><div class="brand"><div class="brand-mark">C27</div><div class="brand-text"><h1>CONFENIS 2027</h1><p>13th International Conference on Enterprise Information Systems</p></div></div><div class="small" style="color:#ecf0f1;text-align:right;"><strong style="color:#fff;">TU Wien, Vienna</strong><br>Hosted by Vienna University of Technology</div></div></header>
+<nav class="main-nav"><div class="wrap" style="padding:0;"><ul>
+  <li><a href="index.html">Home</a></li>
+  <li><a href="about.html">About</a></li>
+  <li><a href="cfp.html">Call for Papers</a></li>
+  <li><a href="committee.html">Committee</a></li>
+  <li><a href="schedule.html">Programme</a></li>
+  <li><a href="venue.html">Venue</a></li>
+  <li><a href="proceedings.html" class="active">Proceedings</a></li>
+</ul></div></nav>
+
+<section class="paper-header">
+  <div class="wrap">
+    <p class="kicker">CONFENIS 2027 · Paper 03 · Process Mining and AI</p>
+    <h1>Conformance Checking under Concept Drift: A Stream-Based Approach for Long-Running Business Processes</h1>
+    <p class="authors">Johannes Köhler, Anna Müller</p>
+    <p class="affil">TU Graz · Institute of Software Technology · 8010 Graz, Austria</p>
+  </div>
+</section>
+
+<div class="paper-body">
+  <div class="paper-meta">
+    <div><strong>Paper number</strong>CONFENIS 2027 / 03</div>
+    <div><strong>Track</strong>Process Mining and AI</div>
+    <div><strong>Pages</strong>31–45</div>
+    <div><strong>Proceedings</strong>Springer LNBIP vol. 528 (2027)</div>
+    <div><strong>Corresponding</strong><a href="mailto:j.koehler@ist.tugraz.at">j.koehler@ist.tugraz.at</a></div>
+    <div><strong>DOI</strong>10.1007/978-3-031-XXXXX-X_3</div>
+  </div>
+
+  <div class="abstract">
+    <strong>Abstract</strong>
+    <p>Real-world business processes evolve continuously: regulatory updates, market shifts and organisational learning all induce gradual or sudden changes to the underlying process model. Classical conformance checking, formulated as a batch problem against a fixed reference model, is poorly equipped to handle this drift. We propose CC-Drift, a stream-based conformance-checking framework that maintains an online alignment-cost estimator and explicitly models drift via a sliding ADWIN window. We evaluate CC-Drift on three real-world event streams totalling 14 million events and find that it detects sudden drift within an average of 1,820 events of onset, compared with 14,400 events for a periodic batch baseline.</p>
+  </div>
+
+  <p class="keywords"><strong>Keywords:</strong> Conformance Checking; Concept Drift; Streaming Process Mining; Online Learning; Long-Running Processes</p>
+
+  <h2>1. Introduction</h2>
+  <p>Conformance checking — quantifying the deviation between an observed event log and a reference process model — is one of the three pillars of process mining (van der Aalst, 2016). The dominant alignment-based formulation (Adriansyah et al., 2011) assumes a stationary process: the reference model is fixed, and the log is processed in batch. This assumption is increasingly untenable. Long-running processes such as procure-to-pay in multinational enterprises, claims handling in insurance, or patient pathways in healthcare evolve under regulatory and organisational pressure (Bose et al., 2014; Maaradji et al., 2017). Concept drift — change in the data-generating process — produces false-positive conformance violations against an out-of-date reference and obscures genuine compliance regressions against an emerging norm.</p>
+
+  <h2>2. Method</h2>
+  <p>CC-Drift maintains three streaming structures: (1) an online alignment-cost estimator based on the prefix-alignment approach of van Zelst et al. (2019), updated per event with amortised O(|model|) cost; (2) an ADWIN (Adaptive Windowing) change detector (Bifet &amp; Gavaldà, 2007) applied to the alignment-cost stream; and (3) a model-rediscovery trigger that fires an inductive-miner re-run on the post-drift window when ADWIN signals a change point with confidence δ = 0.001. The framework is implemented in Python 3.11 on top of PM4Py 2.7 and the river streaming library, with Kafka as the input transport. Latency on a single 16-core machine averaged 0.42 ms per event for models with up to 120 activities.</p>
+
+  <h2>3. Results</h2>
+  <p>Evaluation used three event streams: (S1) a public BPI Challenge 2017 loan-application log replayed at 100× wall-clock speed with two synthetic drift injections; (S2) a production order-to-cash stream from a partnering automotive supplier (4.1 M events, real drift in May 2025 following an SAP enhancement-pack upgrade); and (S3) a healthcare patient-pathway stream from Steiermärkische Krankenanstaltengesellschaft (9.8 M events, real drift in January 2026 following ICD-11 adoption). CC-Drift detected sudden drift on S1 at events 1,710 and 1,930 after injection, against a ground-truth detection budget of 5,000 events (improving on the 14,400-event mean of the daily-batch baseline). On S2 and S3 we have no ground-truth onset, but CC-Drift signalled change points within 24 hours of the operationally known events, against batch baselines of 28 and 35 days. False-positive rates were 0.7% over 14 days of post-drift stable operation, comparable to ADWIN's published behaviour.</p>
+
+  <h2>4. Discussion</h2>
+  <p>CC-Drift offers a substantive reduction in time-to-detection for drift in long-running processes, at modest computational cost. Two limitations bound its applicability. First, ADWIN's confidence parameter must be tuned for each domain; too-aggressive settings produce spurious model rediscovery and operational churn. Second, the prefix-alignment cost estimator is an approximation; on heavily concurrent models, our estimator deviates from the optimal alignment by up to 8% in synthetic stress tests.</p>
+
+  <h2>5. Conclusion</h2>
+  <p>Stream-based conformance checking is feasible and operationally valuable for long-running EIS processes subject to drift. CC-Drift offers a baseline framework for practitioners and a benchmark for further research on online process mining.</p>
+
+  <h2>References</h2>
+  <ol class="references">
+    <li>Adriansyah, A., van Dongen, B.F., van der Aalst, W.M.P.: Conformance checking using cost-based fitness analysis. In: IEEE EDOC 2011, pp. 55–64 (2011).</li>
+<li>Bifet, A., Gavaldà, R.: Learning from time-changing data with adaptive windowing. In: SDM 2007, pp. 443–448 (2007).</li>
+<li>Bose, R.P.J.C., van der Aalst, W.M.P., Žliobaitė, I., Pechenizkiy, M.: Dealing with concept drifts in process mining. IEEE TNNLS 25(1), 154–171 (2014).</li>
+<li>Maaradji, A., Dumas, M., La Rosa, M., Ostovar, A.: Detecting sudden and gradual drifts in business processes from execution traces. IEEE TKDE 29(10), 2140–2154 (2017).</li>
+<li>van der Aalst, W.M.P.: Process Mining: Data Science in Action, 2nd edn. Springer (2016).</li>
+<li>van Zelst, S.J., van Dongen, B.F., van der Aalst, W.M.P.: Online conformance checking: relating event streams to process models using prefix-alignments. International Journal of Data Science and Analytics 8(3), 269–284 (2019).</li>
+  </ol>
+
+  <p class="muted small" style="margin-top:30px;">Citation: Johannes Köhler, Anna Müller. "Conformance Checking under Concept Drift: A Stream-Based Approach for Long-Running Business Processes." In: Tjoa, A.M., Mendling, J., Wimmer, M. (eds.) <em>Research and Practical Issues of Enterprise Information Systems</em>. CONFENIS 2027. LNBIP 528, pp. 31–45. Springer, Cham (2027).</p>
+  <p class="muted small">© Springer Nature Switzerland AG 2027. Reproduction with permission.</p>
+
+  <p style="margin-top:30px;"><a href="proceedings.html">← Back to proceedings</a></p>
+</div>
+
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="grid grid-4">
+      <div><h4>CONFENIS 2027</h4><p>13th IFIP WG 8.9 International Conference on Research and Practical Issues of Enterprise Information Systems. Vienna, 12–13 September 2027.</p></div>
+      <div><h4>Quick links</h4><ul><li><a href="about.html">About</a></li><li><a href="cfp.html">Call for Papers</a></li><li><a href="committee.html">Committee</a></li><li><a href="schedule.html">Programme</a></li><li><a href="venue.html">Venue &amp; Travel</a></li><li><a href="proceedings.html">Proceedings</a></li></ul></div>
+      <div><h4>Organising secretariat</h4><p>Institute of Information Systems Engineering<br>TU Wien — Vienna University of Technology<br>Favoritenstraße 9–11/194<br>1040 Vienna, Austria</p><p><a href="mailto:confenis2027@tuwien.ac.at">confenis2027@tuwien.ac.at</a></p></div>
+      <div><h4>Sponsors &amp; partners</h4><ul><li>IFIP WG 8.9</li><li>Austrian Computer Society (ÖCG)</li><li>Springer LNBIP</li><li>Austrian Science Fund (FWF)</li><li>City of Vienna — MA 23</li></ul></div>
+    </div>
+    <div class="copyright">© 2026–2027 CONFENIS Organising Committee · Hosted by TU Wien · Proceedings © Springer Nature Switzerland AG</div>
+  </div>
+</footer>
+</body></html>
+

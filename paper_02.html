@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Paper 02 — Post-Modern ERP and the Composable Enterprise: A Case Study from the Austrian Manufacturing Sector · CONFENIS 2027</title>
+<meta name="description" content="Post-Modern ERP and the Composable Enterprise: A Case Study from the Austrian Manufacturing Sector — Stefan Strauss, Maria Hofbauer, Lukas Reiterer — CONFENIS 2027 proceedings, Springer LNBIP 528.">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="topbar"><div class="wrap"><span>IFIP WG 8.9 · International Federation for Information Processing</span><span>Vienna, Austria · 12–13 September 2027</span></div></div>
+<header class="site-header"><div class="wrap"><div class="brand"><div class="brand-mark">C27</div><div class="brand-text"><h1>CONFENIS 2027</h1><p>13th International Conference on Enterprise Information Systems</p></div></div><div class="small" style="color:#ecf0f1;text-align:right;"><strong style="color:#fff;">TU Wien, Vienna</strong><br>Hosted by Vienna University of Technology</div></div></header>
+<nav class="main-nav"><div class="wrap" style="padding:0;"><ul>
+  <li><a href="index.html">Home</a></li>
+  <li><a href="about.html">About</a></li>
+  <li><a href="cfp.html">Call for Papers</a></li>
+  <li><a href="committee.html">Committee</a></li>
+  <li><a href="schedule.html">Programme</a></li>
+  <li><a href="venue.html">Venue</a></li>
+  <li><a href="proceedings.html" class="active">Proceedings</a></li>
+</ul></div></nav>
+
+<section class="paper-header">
+  <div class="wrap">
+    <p class="kicker">CONFENIS 2027 · Paper 02 · ERP and Post-Modern Enterprise Architecture</p>
+    <h1>Post-Modern ERP and the Composable Enterprise: A Case Study from the Austrian Manufacturing Sector</h1>
+    <p class="authors">Stefan Strauss, Maria Hofbauer, Lukas Reiterer</p>
+    <p class="affil">TU Wien · Institute of Information Systems Engineering · 1040 Vienna, Austria</p>
+  </div>
+</section>
+
+<div class="paper-body">
+  <div class="paper-meta">
+    <div><strong>Paper number</strong>CONFENIS 2027 / 02</div>
+    <div><strong>Track</strong>ERP and Post-Modern Enterprise Architecture</div>
+    <div><strong>Pages</strong>16–30</div>
+    <div><strong>Proceedings</strong>Springer LNBIP vol. 528 (2027)</div>
+    <div><strong>Corresponding</strong><a href="mailto:stefan.strauss@tuwien.ac.at">stefan.strauss@tuwien.ac.at</a></div>
+    <div><strong>DOI</strong>10.1007/978-3-031-XXXXX-X_2</div>
+  </div>
+
+  <div class="abstract">
+    <strong>Abstract</strong>
+    <p>Gartner's 'post-modern ERP' vision proposes a federated landscape of best-of-breed applications loosely coupled around a thin transactional core. While compelling on paper, empirical evidence on the operational reality of post-modern ERP adoption remains thin, particularly outside the Anglo-American context. We present an exploratory multiple-case study of four Austrian mid-cap manufacturers (annual revenue €120M – €1.2B) that have completed or substantially advanced post-modern ERP transformations between 2022 and 2026. Drawing on 32 semi-structured interviews, architecture documentation and operational KPIs, we identify five recurrent design patterns and four anti-patterns. Our findings contribute to the composable-enterprise discourse by surfacing the governance overhead — what we term the 'integration tax' — that mid-sized European manufacturers absorb when adopting a federated ERP landscape.</p>
+  </div>
+
+  <p class="keywords"><strong>Keywords:</strong> Post-modern ERP; Composable Enterprise; Packaged Business Capabilities; Microservices; Austrian Manufacturing</p>
+
+  <h2>1. Introduction</h2>
+  <p>The post-modern ERP discourse (Sammon &amp; Adam, 2010; Davenport, 2014) reframes the enterprise application landscape from a monolithic single-vendor stack toward a federation of specialised packaged business capabilities (PBCs) integrated by event-driven middleware. Gartner's composable-enterprise framework (Genovese et al., 2021) crystallised this view and has since shaped vendor roadmaps, including SAP's BTP, Oracle's OCI, and Microsoft's Power Platform. Yet the empirical literature on adoption outside large US Fortune-500 enterprises remains thin. The European mid-cap segment — central to the industrial fabric of German-speaking economies — is particularly under-studied.</p>
+
+  <h2>2. Method</h2>
+  <p>We conducted an exploratory multiple-case study (Yin, 2018) of four Austrian manufacturing organisations selected by theoretical sampling: AlphaCo (metalworking, €420M, 1,800 staff), BetaCo (specialty chemicals, €1.1B, 3,200 staff), GammaCo (precision machinery, €185M, 920 staff), and DeltaCo (food processing, €340M, 1,450 staff). All four had completed or substantially advanced a post-modern ERP transformation between 2022 and 2026. Data collection comprised 32 semi-structured interviews (CIOs, enterprise architects, business process owners), architecture documentation review, and access to post-go-live operational KPIs (incident rates, integration latency, total cost of ownership). Interviews were transcribed and coded inductively by two researchers using Gioia methodology (Gioia et al., 2013).</p>
+
+  <h2>3. Results</h2>
+  <p>Cross-case analysis revealed five recurrent design patterns. (P1) Thin transactional spine: all four cases retained a single core ERP (SAP S/4HANA in three cases; Microsoft D365 in one) for general ledger and inventory master, but federated everything else. (P2) Domain-aligned PBCs: planning, MES, quality, warranty, and field service are each delivered by a specialised vendor — typically Siemens Opcenter or Plex for MES, Hexagon for quality, ServiceNow for field. (P3) Event-streaming backbone: three of four cases use Apache Kafka (one Confluent Cloud, two self-hosted) as the inter-application bus, with the fourth on Azure Event Hubs. (P4) API gateway as architectural firewall: all four enforce vendor-supplied APIs are mediated through a single gateway (Kong, MuleSoft, or Apigee). (P5) Federated data product layer: three of four maintain a Snowflake or Databricks domain-aligned analytical layer treated as the analytical 'truth' rather than the ERP itself.</p><p>We also identified four anti-patterns: (A1) hidden coupling through stored procedures that bypass the PBC contract; (A2) 'shadow master' duplication, where product master data is independently maintained in two PBCs without a system of record; (A3) synchronous request-reply integration smuggled into an event-driven architecture; and (A4) under-resourced integration platform teams of fewer than four engineers, all four of which produced measurable degradation in operational KPIs.</p>
+
+  <h2>4. Discussion</h2>
+  <p>Our cases support the composable-enterprise thesis but qualify it sharply: post-modern ERP is not lower-cost than the monolithic alternative. Across our four cases, the five-year total cost of ownership of the federated landscape exceeded the equivalent monolithic S/4HANA-centric reference by 12% on average, driven primarily by integration platform engineering and PBC licensing. The composable approach pays for itself only when at least two of the federated PBCs deliver capability genuinely unavailable in the core ERP — in our cases, advanced MES (P1, P3) and warranty management (P2, P4). For mid-cap manufacturers without such capability gaps, our evidence suggests the monolithic alternative remains rational.</p>
+
+  <h2>5. Conclusion</h2>
+  <p>Post-modern ERP is real, operationally viable, and cost-justified — but only contingently. The case for composability rests on capability differentiation in at least two functional domains, and on a sustained investment in integration-platform engineering of at least 0.5% of revenue. Our five patterns and four anti-patterns offer a preliminary maturity model for European mid-cap practitioners weighing the transition.</p>
+
+  <h2>References</h2>
+  <ol class="references">
+    <li>Davenport, T.H.: How big data is different. MIT Sloan Management Review 54(1), 43–46 (2014).</li>
+<li>Genovese, Y., Pang, A., Anderson, R.: The composable enterprise. Gartner Research G00733111 (2021).</li>
+<li>Gioia, D.A., Corley, K.G., Hamilton, A.L.: Seeking qualitative rigor in inductive research. Organizational Research Methods 16(1), 15–31 (2013).</li>
+<li>Sammon, D., Adam, F.: Project preparedness and the emergence of implementation problems in ERP projects. Information &amp; Management 47(1), 1–8 (2010).</li>
+<li>Strauss, S., Hofbauer, M.: Enterprise architecture in Austrian mid-caps: a sectoral baseline. Wirtschaftsinformatik 65(4), 412–428 (2024).</li>
+<li>Yin, R.K.: Case Study Research and Applications: Design and Methods, 6th edn. SAGE (2018).</li>
+  </ol>
+
+  <p class="muted small" style="margin-top:30px;">Citation: Stefan Strauss, Maria Hofbauer, Lukas Reiterer. "Post-Modern ERP and the Composable Enterprise: A Case Study from the Austrian Manufacturing Sector." In: Tjoa, A.M., Mendling, J., Wimmer, M. (eds.) <em>Research and Practical Issues of Enterprise Information Systems</em>. CONFENIS 2027. LNBIP 528, pp. 16–30. Springer, Cham (2027).</p>
+  <p class="muted small">© Springer Nature Switzerland AG 2027. Reproduction with permission.</p>
+
+  <p style="margin-top:30px;"><a href="proceedings.html">← Back to proceedings</a></p>
+</div>
+
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="grid grid-4">
+      <div><h4>CONFENIS 2027</h4><p>13th IFIP WG 8.9 International Conference on Research and Practical Issues of Enterprise Information Systems. Vienna, 12–13 September 2027.</p></div>
+      <div><h4>Quick links</h4><ul><li><a href="about.html">About</a></li><li><a href="cfp.html">Call for Papers</a></li><li><a href="committee.html">Committee</a></li><li><a href="schedule.html">Programme</a></li><li><a href="venue.html">Venue &amp; Travel</a></li><li><a href="proceedings.html">Proceedings</a></li></ul></div>
+      <div><h4>Organising secretariat</h4><p>Institute of Information Systems Engineering<br>TU Wien — Vienna University of Technology<br>Favoritenstraße 9–11/194<br>1040 Vienna, Austria</p><p><a href="mailto:confenis2027@tuwien.ac.at">confenis2027@tuwien.ac.at</a></p></div>
+      <div><h4>Sponsors &amp; partners</h4><ul><li>IFIP WG 8.9</li><li>Austrian Computer Society (ÖCG)</li><li>Springer LNBIP</li><li>Austrian Science Fund (FWF)</li><li>City of Vienna — MA 23</li></ul></div>
+    </div>
+    <div class="copyright">© 2026–2027 CONFENIS Organising Committee · Hosted by TU Wien · Proceedings © Springer Nature Switzerland AG</div>
+  </div>
+</footer>
+</body></html>
+
